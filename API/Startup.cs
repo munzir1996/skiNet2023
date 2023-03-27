@@ -42,7 +42,7 @@ namespace API
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => x.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<ConnectionMultiplexer>(c => { 
+            services.AddSingleton<IConnectionMultiplexer>(c => { 
                 var configuration = ConfigurationOptions.Parse(
                     this.configuration.GetConnectionString("Redis"), true);
                 return ConnectionMultiplexer.Connect(configuration);
